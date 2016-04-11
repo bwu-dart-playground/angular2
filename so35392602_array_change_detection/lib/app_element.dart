@@ -25,9 +25,9 @@ import 'package:observe/observe.dart' show toObservable;
 class AppElement {
 //  ChangeDetectorRef _cdRef;
 //  ApplicationRef _appRef;
-  AppElement(/*this._cdRef, this._appRef*/) {
+  AppElement(/*this._cdRef, this._appRef*/); // {
 //    _cdRef.detach();
-  }
+  //}
 
   List<String> arr = toObservable([]) as List<String>;
   void addItem(String value) {

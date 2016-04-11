@@ -10,9 +10,10 @@
 
   - Observables
     - https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#bidirectional-service
+      - My SO answer http://stackoverflow.com/questions/34714462/updating-variable-changes-in-components-from-a-service-with-angular2
     - class that notifies about property changes
-       - http://stackoverflow.com/questions/36267119/detect-change-of-nested-property-for-component-input/36267274#36267274
-       - https://plnkr.co/edit/wnLWAW?p=preview (own)
+      - http://stackoverflow.com/questions/36267119/detect-change-of-nested-property-for-component-input/36267274#36267274
+      - https://plnkr.co/edit/wnLWAW?p=preview (own)
     - Observable in service http://stackoverflow.com/questions/34376854/delegation-eventemitter-or-observable-in-angular2/35568924 (Mark)
       - monitor object change http://stackoverflow.com/questions/36267119/detect-change-of-nested-property-for-component-input/36267274#36267274
     - BehaviorSubject http://stackoverflow.com/questions/36372724/how-do-i-ensure-that-a-call-to-subscribe-on-the-observer-initially-receives-the
@@ -41,6 +42,7 @@
       - http://stackoverflow.com/questions/34948961/angular-2-custom-form-input
       - http://stackoverflow.com/questions/33981270/bind-angular-2-model-to-polymer-dropdown/33986250
       - http://www.bennadel.com/blog/3007-failure-using-ngmodel-with-a-custom-component-in-angular-2-beta-1.htm
+      - http://almerosteyn.com/2016/04/linkup-custom-control-to-ngcontrol-ngmodel (ControlValueAccess + ngControl)
     - getcontrol group values of a component loaded using DCL
       - http://stackoverflow.com/questions/35008412/how-to-get-the-control-group-values-of-a-component-loaded-using-dcl-loadintoloca#35008527
     - dynamic properties http://stackoverflow.com/questions/34632603/dynamic-properties-on-ngformmodel#35227285 mit Plnkr from Thierry
@@ -73,11 +75,12 @@
     You can. Call `markForCheck` on a change detector ref, and then call LifeCycle.tick.
 
   - observables and onPush https://plnkr.co/edit/oUQW5DzrLdUUThIkxLGG?p=preview
+  - onPush, markAsCheckOnce https://github.com/angular/angular/issues/4746#issuecomment-150754049
 
 
 - DynamicComponentLoader
   - wrapper element for DCL http://stackoverflow.com/questions/36325212/angular-2-dynamic-tabs-with-user-click-chosen-components/36325468#36325468
-  - loadAsRoot with data binding http://plnkr.co/edit/yzKAiXQQQwKi88g6wIdY?p=preview
+  - loadAsRoot with data binding http://plnkr.co/edit/yzKAiXQQQwKi88g6wIdY?p=preview (content seems not to match the description)
   - eigenes (set id) http://plnkr.co/edit/ihb7dzRlz1DO5piUvoXw?p=preview
   - simple loadNextToLocation example https://plnkr.co/edit/LwrrrEcn4rDqWs3bXu3K?p=preview
   - loadAsRoot workaround
@@ -108,7 +111,7 @@ cont.subscribe(adjustwidth);
  https://github.com/angular/angular/issues/6174#issuecomment-169556490
 
 - Plunker example
-  - TS template (public) https://plnkr.co/edit/wnLWAW?p
+  - TS template (public) https://plnkr.co/edit/wnLWAW?p (private) https://plnkr.co/edit/Z67Tlh?p=info
     (private) https://plnkr.co/edit/uRW34w?p=catalogue
     (old https://plnkr.co/edit/tpl:AvJOMERrnz94ekVua0u5)
   - ng-content (extending element) http://plnkr.co/edit/jS8JHmD0xibJ8UGOKlCC?p=preview
@@ -117,12 +120,16 @@ cont.subscribe(adjustwidth);
     http://plnkr.co/edit/riokbSny09yiV17400ip?p=preview
   - @Input() and `@HostBinding()` on the same field https://plnkr.co/edit/JyhQFJfSRLUwNYcENC2M?p=preview
   - Promise, map https://plnkr.co/edit/02OTUm?p=preview
+  - Ionic http://plnkr.co/edit/TW20lftdc5s622pcJPkp?p=preview
 
 - WebWorkers
   - https://github.com/angular/angular/blob/master/modules/angular2/docs/web_workers/web_workers.md
+  - custom render service https://github.com/angular/angular/issues/2409
 
 
 - Router
+  - set active class http://stackoverflow.com/questions/34965853/in-angular-2-how-do-i-assign-a-custom-class-to-an-active-router-link/34965944#34965944
+  - get all routes http://stackoverflow.com/questions/36419836/angular2-get-routings-map
   - load routes dynamically
     - http://stackoverflow.com/questions/36350906/dynamic-build-routes-or-dynamic-component-import-angular-2/36351148#36351148
     - http://stackoverflow.com/questions/35887063/dynamic-route-loading-in-angular-2-fails-beta/35889066#35889066
@@ -153,6 +160,8 @@ cont.subscribe(adjustwidth);
   - Async routes cause route data to be lost
     - https://github.com/angular/angular/issues/6272#issuecomment-173176154
     - https://plnkr.co/edit/N8YwjiBOnAGarRXtRJJO
+    - http://plnkr.co/edit/Bim8OGO7oddxBaa26WzR?p=preview
+    - http://stackoverflow.com/questions/36429843/async-load-routes-data-and-build-route-instruction-for-angular-2
   - Aux routes
     - http://plnkr.co/edit/5mp8pXsWuLt2yAIQgV3p?p=preview von brandonroberts
     - http://plnkr.co/edit/lquMdagaVfIoAT83w1pl?p=preview
@@ -292,6 +301,7 @@ cont.subscribe(adjustwidth);
   - Model-driven forms using ControlGroup http://plnkr.co/edit/UClEl7ly2LRjYRf7MvY6?p=info
     http://blog.ng-book.com/the-ultimate-guide-to-forms-in-angular-2/
   - valueaccessor
+    - http://stackoverflow.com/questions/31879497/angular2-radio-button-binding
     - https://github.com/angular/angular/issues/2543 (eigenes funktionierendes Beispiel)
     - http://plnkr.co/edit/slVMz6Kgv6KlnUNMDe3o?p=preview
     - see also https://github.com/angular/angular/issues/2543  (https://plnkr.co/edit/Bz7wLC5qq7s6Fph1UwpC?p=preview)
@@ -341,6 +351,8 @@ cont.subscribe(adjustwidth);
   - http://plnkr.co/edit/fwd1kh9TXfemagpuDnLZ?p=preview (TemplateRef, ViewContainerRef)
 
 - unittest
+  - async
+    - PR https://github.com/angular/angular/pull/7735#issuecomment-206424852
   - routing
     - http://stackoverflow.com/questions/34658526/trouble-unit-testing-service-with-the-router-injected-in-the-constructor-in-angu
     - http://stackoverflow.com/questions/35011972/component-undefined-has-no-route-config-aka-how-to-configure-angular-2-router-fo
@@ -383,6 +395,7 @@ cont.subscribe(adjustwidth);
   - page transition animation http://plnkr.co/edit/FikHIEPONMYhr6COD9Ou?p=info
     http://stackoverflow.com/questions/33553828/page-transition-animations-with-angular-2-0-router-and-component-interface-promi
   - hide spinner on load http://stackoverflow.com/questions/36234211/how-to-set-animation-on-first-element-on-loading
+  - slide-in navigation http://stackoverflow.com/questions/36417931/angular-2-ngif-and-css-transition-animation/36417971?noredirect=1#comment60456233_36417971
 
 - Project setup
   - cannot find Promise
@@ -435,9 +448,13 @@ cont.subscribe(adjustwidth);
 
 
 - FAQ
+  - CORS http://stackoverflow.com/questions/10143093/origin-is-not-allowed-by-access-control-allow-origin
   - ngClass http://stackoverflow.com/a/33713824/217408
   - add ROUTER_DIRECTIVES to PLATFORM_DIRECTIVES
     `provide(PLATFORM_DIRECTIVES, {useValue: [ROUTER_DIRECTIVES], multi: true})`
+  - other directives
+    https://angular.io/docs/ts/latest/api/core/PLATFORM_DIRECTIVES-let.html
+    `bootstrap(MyComponent, [provide(PLATFORM_DIRECTIVES, {useValue: [OtherDirective], multi:true})]);`
   - add pipes to PLATFORM_PIPES
     `bootstrap(App, [provide(PLATFORM_PIPES, {useValue: RainbowizePipe, multi:true})]);`
   - GitHub issues are for bug reports and feature requests.

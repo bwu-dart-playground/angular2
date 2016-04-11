@@ -1,7 +1,9 @@
 library binarious_form_test.app_element;
 
+import 'dart:html' show Event;
 import 'package:angular2/angular2.dart'
     show
+        AbstractControl,
         Component,
         Control,
         ControlGroup,
@@ -11,13 +13,14 @@ import 'package:angular2/angular2.dart'
         NgControl,
         NgControlGroup,
         Output,
-        View,
-        Validators;
+        Validators,
+        View;
 import 'dart:convert' show JSON;
 
 /// http://www.syntaxsuccess.com/viewarticle/forms-and-validation-in-angular-2.0
 
-@Component(selector: 'app-element',
+@Component(
+    selector: 'app-element',
     template: '''
 <h1>app-element</h1>
 
@@ -40,7 +43,7 @@ class AppElement {
 }
 
 class ZipValidator {
-  static Map<String, bool> validate(Control zip) {
+  static Map<String, bool> validate(AbstractControl zip) {
     print('validate zip');
     bool valid = new RegExp(r'^\d{5}$').hasMatch(zip.value);
     if (valid) {
@@ -50,7 +53,9 @@ class ZipValidator {
   }
 }
 
-@Component(selector: 'form-element',template: '''
+@Component(
+    selector: 'form-element',
+    template: '''
 <h1>form-element</h1>
 <form (ngSubmit)="onSubmit(\$event)" [ngFormModel]="form" #f="ngForm">
     <div>
@@ -101,7 +106,7 @@ class FormElement {
     });
   }
 
-  void onSubmit(event) {
+  void onSubmit(Event event) {
     payLoad = JSON.encode(this.form.value);
   }
 }
