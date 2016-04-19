@@ -5,7 +5,7 @@ import 'package:angular2/router.dart'
         HashLocationStrategy,
         LocationStrategy,
         ROUTER_PROVIDERS;
-import 'package:angular2/bootstrap.dart' show bootstrap;
+import 'package:angular2/platform/browser.dart'show bootstrap;
 import 'package:forms_and_validation_in_angular_2/app_element.dart' show AppElement;
 
 void main() {

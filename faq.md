@@ -32,6 +32,7 @@
     obs.subscribe(); //prints 3
 
   - Forms
+    - validation with optional controls http://stackoverflow.com/questions/35728850/angular-2-using-ngcontrol-with-optional-fields#36604958
     - form-level validator http://stackoverflow.com/questions/36399934/angular2-form-validation-on-conditionally-created-input-field
     - form.find() controls https://github.com/angular/angular/issues/5024
     - form test not getting valid (Gitter binarious)
@@ -65,7 +66,6 @@
 
 - Resources
   - escardin/angular2-community-faq https://github.com/escardin/angular2-community-faq#any-good-tutorials-for-the-router
-  - angular2 modal source https://github.com/shlomiassaf/angular2-modal/blob/master/src/angular2-modal/providers/Modal.ts#L46
   - public Google Docs https://drive.google.com/drive/folders/0BxgtL8yFJbacQmpCc1NMV3d5dnM
 
 - Change detection
@@ -128,6 +128,7 @@ cont.subscribe(adjustwidth);
 
 
 - Router
+  - get RouteParams in AppComponent (root) http://stackoverflow.com/questions/36600082/how-to-access-routeparams-in-the-app-class-in-angular2
   - set active class http://stackoverflow.com/questions/34965853/in-angular-2-how-do-i-assign-a-custom-class-to-an-active-router-link/34965944#34965944
   - get all routes http://stackoverflow.com/questions/36419836/angular2-get-routings-map
   - load routes dynamically
@@ -190,6 +191,7 @@ cont.subscribe(adjustwidth);
   - Is current route active (Instruction alias) https://github.com/angular/angular/issues/7476 `router.isRouteActive(router.generate(['Parent', 'Child']))`
 
   - secure router-outlet  CaptainCodeman
+    - http://www.captaincodeman.com/2016/03/31/angular2-route-security/
 ```
   import {Directive, Injector, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
   import {Router, RouteData, RouterOutlet, RouteParams, Instruction, ComponentInstruction} from 'angular2/router';
@@ -296,6 +298,8 @@ cont.subscribe(adjustwidth);
 
 
 - forms
+  - providing (async) validators globally https://github.com/angular/angular/issues/8022#issuecomment-211299100
+    see also https://github.com/angular/angular/issues/8118
   - uppercase directive https://plnkr.co/edit/MzVOCK?p=preview (eigener)
   - different ways of building a form http://stackoverflow.com/questions/35383765/angular2-forms-validations-ngcontrol-ngmodel-etc
   - Model-driven forms using ControlGroup http://plnkr.co/edit/UClEl7ly2LRjYRf7MvY6?p=info
@@ -446,8 +450,14 @@ cont.subscribe(adjustwidth);
   - Authentication
     - http://stackoverflow.com/questions/34331478/angular2-redirect-to-login-page
 
+- TypeScript setup
+  - loading polyfills https://github.com/angular/angular/issues/4809#issuecomment-209508295
 
 - FAQ
+  - angular2 modal source https://github.com/shlomiassaf/angular2-modal/blob/master/src/angular2-modal/providers/Modal.ts#L46
+    - Bootstrap CSS modal http://stackoverflow.com/questions/36566698/cant-initialize-dynamically-appended-component-in-angular-2/36566919?noredirect=1#comment60736661_36566919
+  - bootstrap 2 components with a shared service http://stackoverflow.com/questions/36566698/cant-initialize-dynamically-appended-component-in-angular-2/36566919?noredirect=1#comment60736661_36566919 (with own Plunker)
+
   - CORS http://stackoverflow.com/questions/10143093/origin-is-not-allowed-by-access-control-allow-origin
   - ngClass http://stackoverflow.com/a/33713824/217408
   - add ROUTER_DIRECTIVES to PLATFORM_DIRECTIVES

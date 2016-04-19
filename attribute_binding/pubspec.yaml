@@ -15,4 +15,4 @@ transformers:
     - --show-package-warnings
     - --trust-type-annotations
     - --trust-primitives
-- dart_to_js_script_rewriter
+#- dart_to_js_script_rewriter

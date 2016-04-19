@@ -5,7 +5,7 @@ import 'package:angular2/router.dart'
         HashLocationStrategy,
         LocationStrategy,
         ROUTER_PROVIDERS;
-import 'package:angular2/bootstrap.dart' show bootstrap;
+import 'package:angular2/platform/browser.dart'show bootstrap;
 import 'package:so35392602_array_change_detection/app_element.dart' show AppElement;
 
 void main() {

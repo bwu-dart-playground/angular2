@@ -5,7 +5,7 @@ import 'package:angular2/router.dart'
         HashLocationStrategy,
         LocationStrategy,
         ROUTER_PROVIDERS;
-import 'package:angular2/bootstrap.dart' show bootstrap;
+import 'package:angular2/platform/browser.dart'show bootstrap;
 import 'package:so35366132_reset_bound_value/app_element.dart' show AppElement;
 
 void main() {

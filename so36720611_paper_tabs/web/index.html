@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>so36720611_paper_tabs</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <script src="packages/web_components/webcomponents.js"></script>
+    <script>
+       /* this script must run before Polymer is imported */
+       window.Polymer = {
+         dom: 'shadow',
+         lazyRegister: true
+       };
+     </script>
+    <script async src="main.dart" type="application/dart"></script>
+    <script async src="packages/browser/dart.js"></script>
+  </head>
+  <body>
+    <app-element></app-element>
+    <paper-tabs selected="0"> <!-- THESE WORK -->
+      <paper-tab>INDEX ITEM ONE</paper-tab>
+      <paper-tab>INDEX ITEM TWO</paper-tab>
+      <paper-tab>INDEX ITEM THREE</paper-tab>
+    </paper-tabs>
+  </body>
+</html>

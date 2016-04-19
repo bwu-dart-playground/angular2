@@ -4,7 +4,7 @@ import 'package:angular2/router.dart'
         HashLocationStrategy,
         LocationStrategy,
         ROUTER_PROVIDERS;
-import 'package:angular2/bootstrap.dart' show bootstrap;
+import 'package:angular2/platform/browser.dart'show bootstrap;
 import 'package:form_control_update_value/app_element.dart' show AppElement;
 import 'package:angular2/platform/browser.dart' show ELEMENT_PROBE_PROVIDERS, enableDebugTools;
 import 'package:angular2/core.dart' show ComponentRef, provide;

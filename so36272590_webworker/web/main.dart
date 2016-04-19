@@ -14,7 +14,7 @@ import 'package:angular2/core.dart'
 //    HashLocationStrategy,
 //    LocationStrategy,
 //    ROUTER_PROVIDERS;
-//import 'package:angular2/bootstrap.dart' show bootstrap;
+//import 'package:angular2/platform/browser.dart'show bootstrap;
 //import 'package:so36272590_webworker/app_element.dart' show AppElement;
 import 'package:angular2/platform/worker_render.dart'
     show MessageBus, WORKER_RENDER_PLATFORM, initIsolate;
