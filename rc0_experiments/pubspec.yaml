@@ -7,7 +7,6 @@ dev_dependencies:
 transformers:
 # transformer options
 # https://github.com/angular/angular/blob/master/modules_dart/transform/lib/src/transform/common/options.dart#L20
-# https://github.com/angular/angular/wiki/Angular-2-Dart-Transformer
 - angular2:
     entry_points:
     - web/main.dart

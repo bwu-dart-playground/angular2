@@ -19,6 +19,11 @@
     - BehaviorSubject http://stackoverflow.com/questions/36372724/how-do-i-ensure-that-a-call-to-subscribe-on-the-observer-initially-receives-the
       - http://stackoverflow.com/questions/36408997/angular2-sending-data-from-a-component-to-a-component-via-service/36409287?noredirect=1#comment60442306_36409287
       - Use Service to communicate between components https://plnkr.co/edit/7sWWpF?p=preview (own)
+    - rxjs5
+      - docs http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-scan
+      - https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35
+      - migration https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md
+      - (rxjs4 https://github.com/Reactive-Extensions/RxJS)
 
     obs=new Subject().startWith(4);
     obs.subscribe();
@@ -31,12 +36,17 @@
     obs.next(3); //prints 3
     obs.subscribe(); //prints 3
 
+  - Template
+    - http://stackoverflow.com/questions/37225722/ng-content-select-bound-variable/37229495#37229495 ViewComponentRef.createEmbeddedView (own with Plunker uses context)
+    - http://stackoverflow.com/questions/36730210/binding-events-when-using-a-ngfortemplate-in-angular-2 (with Plunker) (TemplateViewRef setLocal - is now context)
+
   - Forms
     - validation with optional controls http://stackoverflow.com/questions/35728850/angular-2-using-ngcontrol-with-optional-fields#36604958
     - form-level validator http://stackoverflow.com/questions/36399934/angular2-form-validation-on-conditionally-created-input-field
     - form.find() controls https://github.com/angular/angular/issues/5024
     - form test not getting valid (Gitter binarious)
     - use custom components as form inputs with `ngModel` (uses ControlValueAccessor)
+      - trim for required http://stackoverflow.com/questions/37066442/model-values-not-trim-automatically-in-angular-2
       - https://github.com/angular/angular/issues/6639#issuecomment-174703547 (with example links)
       - https://github.com/angular/angular/issues/2543
       - http://stackoverflow.com/questions/34995938/ngmodel-custom-valuesaccessor
@@ -47,6 +57,8 @@
     - getcontrol group values of a component loaded using DCL
       - http://stackoverflow.com/questions/35008412/how-to-get-the-control-group-values-of-a-component-loaded-using-dcl-loadintoloca#35008527
     - dynamic properties http://stackoverflow.com/questions/34632603/dynamic-properties-on-ngformmodel#35227285 mit Plnkr from Thierry
+
+    - select option dummy default option http://plnkr.co/edit/KAskl0BatO71juX97UrG?p=preview
 
   - Template Variables
     - add using BrowserDomAdapter
@@ -79,16 +91,30 @@
 
 
 - DynamicComponentLoader
-  - wrapper element for DCL http://stackoverflow.com/questions/36325212/angular-2-dynamic-tabs-with-user-click-chosen-components/36325468#36325468
-  - loadAsRoot with data binding http://plnkr.co/edit/yzKAiXQQQwKi88g6wIdY?p=preview (content seems not to match the description)
-  - eigenes (set id) http://plnkr.co/edit/ihb7dzRlz1DO5piUvoXw?p=preview
-  - simple loadNextToLocation example https://plnkr.co/edit/LwrrrEcn4rDqWs3bXu3K?p=preview
-  - loadAsRoot workaround
-    - https://github.com/angular/angular/issues/6223#issuecomment-195155190
-    - https://github.com/angular/angular/issues/6370#issuecomment-193896657 (good example)
-    - http://plnkr.co/edit/tcgbI2?p=preview  (https://github.com/angular/angular/issues/7453#issuecomment-193138577)
-    - https://github.com/angular/angular/issues/6071#issuecomment-202765309 (register component with change detection)
-  - load by name https://plnkr.co/edit/C0U5IIflrMnqxuXVbdw8?p=preview (https://github.com/angular/angular/issues/7652#issuecomment-198365577)
+  - random order of multple added coponents https://github.com/angular/angular/issues/7854#issuecomment-203988888
+  - ViewContainerRef.createComponent
+    - example https://github.com/angular/angular/issues/3474#issuecomment-216748940
+    - inject parent injector http://plnkr.co/edit/lxqPxFCa7gNlsRZfxI8E?p=preview, http://plnkr.co/edit/1zcoWhgTd2fkiKZNnKRI?p=info
+    - appRef._loadComponent to enable change detection - is this really necessary?
+      - http://plnkr.co/edit/8o9dAcOQ4LTYa4Oms5wE?p=preview
+      - https://github.com/angular/angular/issues/6223#issuecomment-216456325
+  - beta.17
+    - loadNextToLocation https://plnkr.co/edit/CcKXhq?p=preview  http://stackoverflow.com/questions/35170985/how-to-call-an-event-in-parent-component-from-child-component-which-is-loaded-us
+  - beta.16
+    - add component to clicked item  with ViewChildren http://plnkr.co/edit/aRKZPJeGs7XC6gf1ukOj?p=preview
+  - <= beta.15
+      - wrapper element for DCL
+        - https://plnkr.co/edit/ZksBln?p=preview (still using DynamicComponentLoader)
+        - http://stackoverflow.com/questions/36325212/angular-2-dynamic-tabs-with-user-click-chosen-components/36325468#36325468
+      - loadAsRoot with data binding http://plnkr.co/edit/yzKAiXQQQwKi88g6wIdY?p=preview (content seems not to match the description)
+      - eigenes (set id) http://plnkr.co/edit/ihb7dzRlz1DO5piUvoXw?p=preview
+      - simple loadNextToLocation example https://plnkr.co/edit/LwrrrEcn4rDqWs3bXu3K?p=preview
+      - loadAsRoot workaround
+        - https://github.com/angular/angular/issues/6223#issuecomment-195155190
+        - https://github.com/angular/angular/issues/6370#issuecomment-193896657 (good example)
+        - http://plnkr.co/edit/tcgbI2?p=preview  (https://github.com/angular/angular/issues/7453#issuecomment-193138577)
+        - https://github.com/angular/angular/issues/6071#issuecomment-202765309 (register component with change detection)
+      - load by name https://plnkr.co/edit/C0U5IIflrMnqxuXVbdw8?p=preview (https://github.com/angular/angular/issues/7652#issuecomment-198365577)
 
 - custom validators
 ```
@@ -111,9 +137,17 @@ cont.subscribe(adjustwidth);
  https://github.com/angular/angular/issues/6174#issuecomment-169556490
 
 - Plunker example
-  - TS template (public) https://plnkr.co/edit/wnLWAW?p (private) https://plnkr.co/edit/Z67Tlh?p=info
+  - TS template (public beta.17) https://plnkr.co/edit/wnLWAW?p (private) https://plnkr.co/edit/Z67Tlh?p=info
+    - Router
+      - (RC.1) https://plnkr.co/edit/cbEpkV7Ge7aT11CnjFuh?p=preview
+      - (beta 17) https://plnkr.co/edit/6LyC8u?p=preview
+      - (beta 15 https://plnkr.co/edit/VdJwsq?p=preview)
     (private) https://plnkr.co/edit/uRW34w?p=catalogue
     (old https://plnkr.co/edit/tpl:AvJOMERrnz94ekVua0u5)
+
+  - RC.x
+    - get route parameters http://stackoverflow.com/questions/37218706/angular-2-rc1-get-parameters-from-the-initial-url-used/37230716#37230716 (own)
+
   - ng-content (extending element) http://plnkr.co/edit/jS8JHmD0xibJ8UGOKlCC?p=preview
     (ng-content two levels) https://plnkr.co/edit/uRW34w?p=preview
   - form validation http://plnkr.co/edit/S8AUiDzuDDdaLpgxhbK6?p=preview
@@ -121,6 +155,8 @@ cont.subscribe(adjustwidth);
   - @Input() and `@HostBinding()` on the same field https://plnkr.co/edit/JyhQFJfSRLUwNYcENC2M?p=preview
   - Promise, map https://plnkr.co/edit/02OTUm?p=preview
   - Ionic http://plnkr.co/edit/TW20lftdc5s622pcJPkp?p=preview
+  - Keyboard shortcuts: https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts
+  - tree component (recursive) http://plnkr.co/edit/roxW5UmCzq7ch8xUGvbF?p=preview
 
 - WebWorkers
   - https://github.com/angular/angular/blob/master/modules/angular2/docs/web_workers/web_workers.md
@@ -128,6 +164,11 @@ cont.subscribe(adjustwidth);
 
 
 - Router
+  - https://github.com/angular/angular/issues/8409#issuecomment-218323649
+   > @ps2goat can you reproduce? You can only subscribe to the root router for updates, so if you injected the router in a child route, the subscribe wouldn't fire anything.
+  - rc.1 Heroes Plunker example http://plnkr.co/edit/fKSnUzM4aLg1Q8ftkFAp?p=preview
+  - rc.0 Heroes Plunker http://plnkr.co/edit/sjOPaA0azcANt8MGm3NG?p=preview
+  - AltRouter example BrandonRoberts https://plnkr.co/edit/sTzoCO?p=preview
   - get RouteParams in AppComponent (root) http://stackoverflow.com/questions/36600082/how-to-access-routeparams-in-the-app-class-in-angular2
   - set active class http://stackoverflow.com/questions/34965853/in-angular-2-how-do-i-assign-a-custom-class-to-an-active-router-link/34965944#34965944
   - get all routes http://stackoverflow.com/questions/36419836/angular2-get-routings-map
@@ -346,6 +387,13 @@ cont.subscribe(adjustwidth);
 
 - transformers
   - https://github.com/angular/angular/wiki/Angular-2-Dart-Transformer
+  - https://github.com/angular/angular/issues/8189#issuecomment-215967614
+  ```
+    transformers:
+    - angular2: ...
+        resolved_identifiers:
+            BrowserClient: 'package:http/browser_client.dart'
+  ```
 
 - view compiler
   - Angular 2.0: Life of a Template https://docs.google.com/document/d/19_9pshmkAQOA67UWTm41bzWbvikwerVjnCD97D0JS7g/edit
@@ -355,8 +403,10 @@ cont.subscribe(adjustwidth);
   - http://plnkr.co/edit/fwd1kh9TXfemagpuDnLZ?p=preview (TemplateRef, ViewContainerRef)
 
 - unittest
+  - Plunker RC.1 http://embed.plnkr.co/OCqLH555fmTzxAn0F0zy/
   - async
     - PR https://github.com/angular/angular/pull/7735#issuecomment-206424852
+    - Jasmine `done` https://github.com/angular/angular/pull/8159#issuecomment-212919107
   - routing
     - http://stackoverflow.com/questions/34658526/trouble-unit-testing-service-with-the-router-injected-in-the-constructor-in-angu
     - http://stackoverflow.com/questions/35011972/component-undefined-has-no-route-config-aka-how-to-configure-angular-2-router-fo
@@ -385,9 +435,19 @@ cont.subscribe(adjustwidth);
 
 - Polymer
   - http://plnkr.co/edit/1Gx2G2utKwgnNFvf0I8c?p=preview bind to selected of `<paper-lightbox>`
-  - http://stackoverflow.com/questions/35356888/polymer-paper-menu-with-angular2 `<paper-menu>`, `<paper-dropdown-menu>`
+  - http://stackoverflow.com/questions/33981270/bind-angular-2-model-to-polymer-dropdown/33986250 `<paper-dropdown-menu>`
+  http://stackoverflow.com/questions/37202543/ngmodel-binding-on-polymer-dropdown-angular2/37202613#37202613 `<paper-dropdown-menu>`
   - http://plnkr.co/edit/kMuyWiNfDwrLSSc3JGDx?p=preview (selbst zusammengebastelt)
-  - paper-input https://github.com/angular/angular/issues/5360, http://stackoverflow.com/questions/35867952/how-to-use-angular2-ngmodel-for-polymer-paper-input-error-no-value-accessor-fo
+  - paper-input https://github.com/angular/angular/issues/5360,
+    http://stackoverflow.com/questions/35867952/how-to-use-angular2-ngmodel-for-polymer-paper-input-error-no-value-accessor-fo
+  - http://stackoverflow.com/questions/35356888/polymer-paper-menu-with-angular2 `<paper-menu>`, `<paper-dropdown-menu>`
+
+  - Angular Polymer posts
+    - http://stackoverflow.com/questions/37192424/styling-polymer-element-in-angular2/37193613#37193613
+    - http://stackoverflow.com/questions/34779175/polymer-elements-within-angular-2-component/34782260#34782260
+    - http://stackoverflow.com/questions/37490068/how-to-use-css-mixins-with-angular-2-dart-and-polymer/37495705#37495705
+    - http://stackoverflow.com/questions/36864501/using-paper-datatable-in-angular2/36864636#36864636
+
 
 - client-server-communication
   - HTTP interceptors https://github.com/angular/angular/issues/2684
@@ -395,11 +455,11 @@ cont.subscribe(adjustwidth);
 
 - Animation
   - Using Animation and AnimationBuilder https://plnkr.co/edit/f9X2UfWdExhCh6oAX9hc?p=preview
-  - Simple keyframes, ngFor http://plnkr.co/edit/SXzyyN?p=preview
+  - Simple keyframes, ngFor http://plnkr.co/edit/SXzyyN?p=preview http://stackoverflow.com/questions/37217314/how-can-i-animate-ngfor-in-angular-2/37217476#37217476
   - page transition animation http://plnkr.co/edit/FikHIEPONMYhr6COD9Ou?p=info
     http://stackoverflow.com/questions/33553828/page-transition-animations-with-angular-2-0-router-and-component-interface-promi
   - hide spinner on load http://stackoverflow.com/questions/36234211/how-to-set-animation-on-first-element-on-loading
-  - slide-in navigation http://stackoverflow.com/questions/36417931/angular-2-ngif-and-css-transition-animation/36417971?noredirect=1#comment60456233_36417971
+  - slide-in navigation with *ngIf http://stackoverflow.com/questions/36417931/angular-2-ngif-and-css-transition-animation/36417971?noredirect=1#comment60456233_36417971
 
 - Project setup
   - cannot find Promise
@@ -454,11 +514,15 @@ cont.subscribe(adjustwidth);
   - loading polyfills https://github.com/angular/angular/issues/4809#issuecomment-209508295
 
 - FAQ
+  - overlay / modal see https://github.com/angular/angular/issues/8941#issuecomment-223029063
+  - sanitizer http://stackoverflow.com/questions/37076867/in-rc-1-some-styles-cant-be-added-using-binding-syntax/37233523#37233523
+  - RC.1 router not working without routerLink http://stackoverflow.com/questions/37310539/angular-2-rc1-router-doesnt-work-without-any-routerlink
   - angular2 modal source https://github.com/shlomiassaf/angular2-modal/blob/master/src/angular2-modal/providers/Modal.ts#L46
     - Bootstrap CSS modal http://stackoverflow.com/questions/36566698/cant-initialize-dynamically-appended-component-in-angular-2/36566919?noredirect=1#comment60736661_36566919
   - bootstrap 2 components with a shared service http://stackoverflow.com/questions/36566698/cant-initialize-dynamically-appended-component-in-angular-2/36566919?noredirect=1#comment60736661_36566919 (with own Plunker)
 
   - CORS http://stackoverflow.com/questions/10143093/origin-is-not-allowed-by-access-control-allow-origin
+    - CORS test URL https://cors-test.appspot.com/test
   - ngClass http://stackoverflow.com/a/33713824/217408
   - add ROUTER_DIRECTIVES to PLATFORM_DIRECTIVES
     `provide(PLATFORM_DIRECTIVES, {useValue: [ROUTER_DIRECTIVES], multi: true})`
@@ -471,6 +535,7 @@ cont.subscribe(adjustwidth);
     For support questions please use other channels like the ones listed in [CONTRIBUTING - Got a Question or Problem?](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#question)
 
     There is a nice new GitHub feature to "add reaction"s instead of `+1` posts. Please use this instead :+1:
+    +1 was deprecated in favor of "add reaction" please migrate to the new feature as soon as possible!
 
   - escardin community FAQ
     - https://github.com/escardin/angular2-community-faq#what-are-observables-and-where-can-i-learn-more-about-them-and-rx
@@ -515,11 +580,45 @@ cont.subscribe(adjustwidth);
      You can follow https://docs.google.com/document/d/150lerb1LmNLuau_a_EznPV1I1UHMTbEl61t4hZ7ZpS0/edit to see what next steps are planned.
      See also https://github.com/escardin/angular2-community-faq
   - ngFor with JSON
-  - @ViewChildren, @ContentChildren
+  - @ViewChildren, @ContentChildren, @ViewChild
+     - http://stackoverflow.com/questions/32693061/angular-2-typescript-get-hold-of-an-element-in-the-template/35209681#35209681
     - http://plnkr.co/edit/5kJfvIjnC1ROKuXPKNKX?p=preview (own) simple
     - http://plnkr.co/edit/h8aT7cPuW2PCWBqUzlth?p=preview (own) more variations
     - http://stackoverflow.com/questions/36329658/angular-2-select-object-from-the-dom-and-set-the-focus/36329983#36329990 (own Plunker) find by element attribute
+    -  take directive super-type into account when querying - https://github.com/angular/angular/issues/8580
 
   - Http Interceptors http://stackoverflow.com/questions/36261100/what-is-angular-2-analogue-solution-for-angular-1-interceptors
+  - load JavaScript dynamically in component http://stackoverflow.com/questions/34489916/load-external-js-script-dynamically-in-angular-2
+  - call Angular from outside http://stackoverflow.com/questions/36997625/angular-2-communication-of-typescript-functions-with-external-js-libraries/36997723#36997723
+  - component packages http://akveo.com/ng2-admin/#/pages/dashboard
+  - load config before bootstrap
+    - http://stackoverflow.com/questions/37611549/how-to-pass-parameters-rendered-from-backend-to-angular2-bootstrap-method/37611677#37611677
+    - https://github.com/angular/angular/issues/9047#issuecomment-224075188 (CaptainCodeman)
+  - tree recursive http://stackoverflow.com/questions/37734077/passing-variables-into-template-from-function/37734875?noredirect=1#comment62964046_37734875
+
+In the root component you can inject the router and subscribe to route events, then get the params from the router like
+
+    export class AppComponent {
+      constructor(private router:Router) {
+        router.subscribe(route => {
+          console.debug(this.router.currentInstruction.component.params);
+        });
+      }
+    }
+
+On components added by the router you can inject `RouteParams` like and access the values like
+
+    export class Other{
+        constructor(private routeParams: RouteParams) {
+        console.debug(this.routeParams);
+        console.log(this.routeParams.get('filter_industry'));
+        console.log(this.routeParams.get('filter_start_with'));
+      }
+    }
+
+[**Plunker example**](https://plnkr.co/edit/0mlrcA?p=preview)
+
+
+Multiselect Plunker eigenes experiment https://plnkr.co/edit/tKxPE1
 
 
