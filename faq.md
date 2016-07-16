@@ -41,6 +41,15 @@
     - http://stackoverflow.com/questions/36730210/binding-events-when-using-a-ngfortemplate-in-angular-2 (with Plunker) (TemplateViewRef setLocal - is now context)
 
   - Forms
+    - RC.3
+      - ControlValueAccess for custom control
+        - https://github.com/angular/angular/issues/9568#issuecomment-228381646
+        - http://stackoverflow.com/questions/34948961/angular-2-custom-form-input
+      - use ngModel.valid http://plnkr.co/edit/c9D0R58vadLopH5rUNeg?p=preview
+        - https://github.com/angular/angular/issues/9363
+    - Add subform dynamically http://stackoverflow.com/questions/37821064/how-to-create-reusable-nested-subform-component-using-angularjs-2/37831833#37831833
+    - RC.2 FormArray Plunker https://plnkr.co/edit/ir19tuktTqcfGeG8pu2G?p=preview
+
     - validation with optional controls http://stackoverflow.com/questions/35728850/angular-2-using-ngcontrol-with-optional-fields#36604958
     - form-level validator http://stackoverflow.com/questions/36399934/angular2-form-validation-on-conditionally-created-input-field
     - form.find() controls https://github.com/angular/angular/issues/5024
@@ -91,6 +100,8 @@
 
 
 - DynamicComponentLoader
+  - https://docs.google.com/document/d/1VRNljdv-6QDY4_I0xx3DHd-IZ19QlthheMLdGGKAAzM/edit# Angular 2 Synchronous Dynamic Component Creation
+  - final statement https://github.com/angular/angular/issues/7596
   - random order of multple added coponents https://github.com/angular/angular/issues/7854#issuecomment-203988888
   - ViewContainerRef.createComponent
     - example https://github.com/angular/angular/issues/3474#issuecomment-216748940
@@ -148,6 +159,7 @@ cont.subscribe(adjustwidth);
   - RC.x
     - get route parameters http://stackoverflow.com/questions/37218706/angular-2-rc1-get-parameters-from-the-initial-url-used/37230716#37230716 (own)
 
+  - WebWorker http://plnkr.co/edit/PdYDuxy5sUjn7Yt5F7XL?p=preview from https://github.com/angular/angular/issues/9201#issuecomment-226081183
   - ng-content (extending element) http://plnkr.co/edit/jS8JHmD0xibJ8UGOKlCC?p=preview
     (ng-content two levels) https://plnkr.co/edit/uRW34w?p=preview
   - form validation http://plnkr.co/edit/S8AUiDzuDDdaLpgxhbK6?p=preview
@@ -162,8 +174,35 @@ cont.subscribe(adjustwidth);
   - https://github.com/angular/angular/blob/master/modules/angular2/docs/web_workers/web_workers.md
   - custom render service https://github.com/angular/angular/issues/2409
 
+_ i18n Plural pipe example https://github.com/angular/angular/issues/9793#issuecomment-230894321
 
 - Router
+  - RC.3
+    - initialize using AppModule https://github.com/angular/angular/issues/9604#issuecomment-231439314
+    - fragment https://github.com/angular/angular/issues/6595#issuecomment-231548913
+    - lazy loading modules https://github.com/angular/angular/pull/9849/files
+    - router.routerState has the current set of AcrivatedRoutes in a tree
+    - optional router parameters https://github.com/angular/angular/issues/3525
+    - data http://stackoverflow.com/questions/36835123/how-do-i-pass-data-in-angular-2-components-while-using-routing
+    - resolve http://stackoverflow.com/questions/34289761/angular-2-equivalent-to-router-resolve-data-for-new-router/38138019#38138019
+    - default route https://github.com/angular/angular/issues/8579#issuecomment-229227579
+    - aux routes http://stackoverflow.com/questions/37962955/angular2-router-in-one-component/37967806#37967806
+    - dynamically load routes `router.resetConfig` https://github.com/angular/angular/blob/3784696b9e5bf3709558be0f2766a82af2e032b1/modules/%40angular/router/src/router.ts#L169
+    - Subscribe to `ActivatedRoute` and map to routeState to get Data https://github.com/angular/angular/issues/9662#issuecomment-229034288
+    - `<a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Parent</a>` https://github.com/angular/angular/issues/9578
+    - remove queryParams https://github.com/angular/angular/issues/9573#issuecomment-228568695
+    - Brandon @brandonroberts 15:56
+      `{ path: ‘**’, component: CatchAllComponent }`
+    - system.js conig for RC.2 router https://github.com/angular/vladivostok/issues/61
+    - `npm i @angular/router@latest --ignore-scripts # to disable the postinstall`
+    - Query params are global and accessed through the `router.routerState.queryParams`
+    - `router.navigate(['/route/path', { id: value }]);` or matrix params.
+    - lazy loading https://plnkr.co/edit/g8FGMbxECKtj9j1pdLSw?p=preview (SystemJsComponentResolver)
+    - route without component
+        - https://github.com/angular/vladivostok/pull/87
+        - https://github.com/angular/angular/issues/9506#issuecomment-227889282
+    - get parameters from parent https://github.com/angular/vladivostok/issues/62#issuecomment-226569086 (Plunker)
+
   - https://github.com/angular/angular/issues/8409#issuecomment-218323649
    > @ps2goat can you reproduce? You can only subscribe to the root router for updates, so if you injected the router in a child route, the subscribe wouldn't fire anything.
   - rc.1 Heroes Plunker example http://plnkr.co/edit/fKSnUzM4aLg1Q8ftkFAp?p=preview
@@ -231,114 +270,10 @@ cont.subscribe(adjustwidth);
     - https://github.com/angular/angular/issues/5335#issuecomment-170088933
   - Is current route active (Instruction alias) https://github.com/angular/angular/issues/7476 `router.isRouteActive(router.generate(['Parent', 'Child']))`
 
-  - secure router-outlet  CaptainCodeman
-    - http://www.captaincodeman.com/2016/03/31/angular2-route-security/
-```
-  import {Directive, Injector, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
-  import {Router, RouteData, RouterOutlet, RouteParams, Instruction, ComponentInstruction} from 'angular2/router';
-
-  /*
-    Example implementation
-
-    Given a route:
-    @RouteConfig([
-    { path: '/thing/:id', component: ThingComponent, name: 'Thing', data: { public: false, roles:['thinger'] } }
-    ])
-
-    authorize(instruction: ComponentInstruction):boolean {
-      // simplest case - route is public
-      if (<boolean>instruction.routeData.data['public']) {
-        return true;
-      }
-
-      // if not public then we at least need an authenticated user
-      if (this.isAuthenticated()) {
-        var routeRoles = <any[]>instruction.routeData.data['roles'];
-        var userRoles = <string[]>this.roles();
-
-        // no roles required for route = user just needs to be authenticated
-        var authorized = routeRoles.length === 0 || routeRoles.some(routeRole => userRoles.indexOf(routeRole) >= 0);
-
-        return authorized;
-      }
-
-      return false;
-    }
-  */
-  export abstract class IAuthService {
-    abstract isAuthenticated():boolean;
-    authorize(instruction: ComponentInstruction, params:any):boolean {
-      // authorized if route allows public access or user is authenticated
-      return this.isAuthenticated() || <boolean>instruction.routeData.data['public']
-    }
-  }
-
-  @Directive({selector: 'secure-outlet'})
-  export class SecureRouterOutlet extends RouterOutlet {
-    signin:string;
-    unauthorized:string;
-    injector:Injector;
-
-    private parentRouter: Router;
-    private authService: IAuthService;
-
-    constructor(_elementRef: ElementRef, _loader: DynamicComponentLoader,
-                _parentRouter: Router, @Attribute('name') nameAttr: string,
-                authService:IAuthService,
-                injector:Injector,
-                @Attribute('signin') signinAttr: string,
-                @Attribute('unauthorized') unauthorizedAttr: string) {
-      super(_elementRef, _loader, _parentRouter, nameAttr);
-      this.parentRouter = _parentRouter;
-      this.authService = authService;
-      this.injector = injector;
-      this.signin = signinAttr;
-      this.unauthorized = unauthorizedAttr;
-    }
-
-    activate(nextInstruction: ComponentInstruction): Promise<any> {
-      var params = this.getAllRouteParams(this.injector);
-      var isAuthorized = this.authService.authorize(nextInstruction, params);
-
-      if (isAuthorized) {
-        return super.activate(nextInstruction);
-      }
-
-      if (this.authService.isAuthenticated()) {
-        var ins = this.parentRouter.generate([this.unauthorized]);
-        return super.activate(ins.component);
-      } else {
-        var ins = this.parentRouter.generate([this.signin,{url:location.pathname}]);
-        return super.activate(ins.component);
-      }
-    }
-
-    reuse(nextInstruction: ComponentInstruction): Promise<any> {
-      return super.reuse(nextInstruction);
-    }
-
-    getAllRouteParams(injector) {
-      let params = null;
-      while(injector) {
-        const routeParams = injector.getOptional(RouteParams);
-        if (routeParams) {
-          if (params === null) {
-            params = {};
-          } else {
-            params = Object.create(params);
-          }
-
-          Object.assign(params, routeParams.params);
-        }
-        injector = injector.parent;
-      }
-      return params;
-    }
-  }
-  ```
-
 
 - forms
+  - makes the valueChanges and statusChanges observables available on abstract control https://github.com/angular/angular/pull/9586
+  - subform in custom control http://stackoverflow.com/questions/37821064/how-to-create-reusable-nested-subform-component-using-angularjs-2/37831833#37831833
   - providing (async) validators globally https://github.com/angular/angular/issues/8022#issuecomment-211299100
     see also https://github.com/angular/angular/issues/8118
   - uppercase directive https://plnkr.co/edit/MzVOCK?p=preview (eigener)
@@ -352,7 +287,8 @@ cont.subscribe(adjustwidth);
     - see also https://github.com/angular/angular/issues/2543  (https://plnkr.co/edit/Bz7wLC5qq7s6Fph1UwpC?p=preview)
 
   - radio buttons http://plnkr.co/edit/B1WPUs36Gkq0ipI8Bvsi?p=preview (custom value accessor for radio)
-  - https://plnkr.co/edit/988PSJKXCfrUXfLOGgyg?p=preview (http://stackoverflow.com/questions/35653175/how-to-bind-to-radio-buttons-in-angular2-beta-6)
+      - https://github.com/angular/angular/pull/9228 (new RC.2)
+      - https://plnkr.co/edit/988PSJKXCfrUXfLOGgyg?p=preview (http://stackoverflow.com/questions/35653175/how-to-bind-to-radio-buttons-in-angular2-beta-6)
   - validator for depending fields (password repeat) http://plnkr.co/edit/NqQhBPJJo1PzHfisvh9J?p=preview  (@escardin)
 
   - multiple validators
@@ -403,6 +339,10 @@ cont.subscribe(adjustwidth);
   - http://plnkr.co/edit/fwd1kh9TXfemagpuDnLZ?p=preview (TemplateRef, ViewContainerRef)
 
 - unittest
+  - `import {TestComponentBuilder, TestComponentRenderer, ComponentFixtureAutoDetect} from '@angular/core/testing';`
+    https://github.com/angular/angular/pull/9590
+  - beforeEachProviders - use addProviders https://github.com/angular/angular/issues/9591
+  - https://github.com/angular/angular/pull/9564#issue-162083460 2016-06-24
   - Plunker RC.1 http://embed.plnkr.co/OCqLH555fmTzxAn0F0zy/
   - async
     - PR https://github.com/angular/angular/pull/7735#issuecomment-206424852
@@ -454,6 +394,11 @@ cont.subscribe(adjustwidth);
   - https://github.com/angular/http/issues/80
 
 - Animation
+  - rc5 route animations https://github.com/angular/angular/issues/9845#issuecomment-232476173
+  - rc2
+    - example https://github.com/angular/angular/issues/9335
+    - https://github.com/angular/angular/issues/9327
+
   - Using Animation and AnimationBuilder https://plnkr.co/edit/f9X2UfWdExhCh6oAX9hc?p=preview
   - Simple keyframes, ngFor http://plnkr.co/edit/SXzyyN?p=preview http://stackoverflow.com/questions/37217314/how-can-i-animate-ngfor-in-angular-2/37217476#37217476
   - page transition animation http://plnkr.co/edit/FikHIEPONMYhr6COD9Ou?p=info
@@ -513,7 +458,15 @@ cont.subscribe(adjustwidth);
 - TypeScript setup
   - loading polyfills https://github.com/angular/angular/issues/4809#issuecomment-209508295
 
+- SVG
+  - xlink:href is not bindable https://github.com/angular/angular/pull/9514#discussion_r68254345
+
+- npm
+  - hourly builds https://github.com/angular/angular/issues/4671#issuecomment-228178772
+
 - FAQ
+  - app module example https://github.com/angular/angular/pull/9859
+    - app_initializer with module https://github.com/angular/angular/issues/9101#issuecomment-230947019
   - overlay / modal see https://github.com/angular/angular/issues/8941#issuecomment-223029063
   - sanitizer http://stackoverflow.com/questions/37076867/in-rc-1-some-styles-cant-be-added-using-binding-syntax/37233523#37233523
   - RC.1 router not working without routerLink http://stackoverflow.com/questions/37310539/angular-2-rc1-router-doesnt-work-without-any-routerlink
@@ -531,8 +484,11 @@ cont.subscribe(adjustwidth);
     `bootstrap(MyComponent, [provide(PLATFORM_DIRECTIVES, {useValue: [OtherDirective], multi:true})]);`
   - add pipes to PLATFORM_PIPES
     `bootstrap(App, [provide(PLATFORM_PIPES, {useValue: RainbowizePipe, multi:true})]);`
+    RC.2 https://github.com/angular/angular/pull/9267/files
   - GitHub issues are for bug reports and feature requests.
     For support questions please use other channels like the ones listed in [CONTRIBUTING - Got a Question or Problem?](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#question)
+
+    Please ask support questions using a dedicated support channel as explained in https://github.com/angular/angular/blob/master/CONTRIBUTING.md#question. We want to reserve GitHub issues for bug reports and feature requests only. Thanks!
 
     There is a nice new GitHub feature to "add reaction"s instead of `+1` posts. Please use this instead :+1:
     +1 was deprecated in favor of "add reaction" please migrate to the new feature as soon as possible!
@@ -595,7 +551,11 @@ cont.subscribe(adjustwidth);
     - http://stackoverflow.com/questions/37611549/how-to-pass-parameters-rendered-from-backend-to-angular2-bootstrap-method/37611677#37611677
     - https://github.com/angular/angular/issues/9047#issuecomment-224075188 (CaptainCodeman)
   - tree recursive http://stackoverflow.com/questions/37734077/passing-variables-into-template-from-function/37734875?noredirect=1#comment62964046_37734875
-
+  - RC.2 bundles https://github.com/angular/angular/issues/9289
+  - build size https://github.com/angular/angular-cli/issues/1136#issuecomment-227026519 `ng build -prod`
+  - stopImmediatePropagation https://github.com/angular/angular/issues/9587
+  - template `<template [ngTemplateOutlet]="templateRefExpression" [ngOutletContext]="objectExpression"></template>`
+    - https://github.com/angular/angular/commit/164a091
 In the root component you can inject the router and subscribe to route events, then get the params from the router like
 
     export class AppComponent {
@@ -622,3 +582,5 @@ On components added by the router you can inject `RouteParams` like and access t
 Multiselect Plunker eigenes experiment https://plnkr.co/edit/tKxPE1
 
 
+Google didn't find any other mention of the error message. In Angular2 sources it's mentioned here
+https://github.com/angular/angular/blob/master/modules/@angular/platform-browser/src/security/dom_sanitization_service.ts#L131
