@@ -1,6 +1,6 @@
 import 'package:angular2/angular2.dart' show provide;
 import 'package:angular2/router.dart' show ROUTER_PROVIDERS;
-import 'package:angular2/platform/common.dart'
+import 'package:angular2/platform/browser.dart'
     show APP_BASE_HREF, HashLocationStrategy, LocationStrategy;
 
 import 'package:angular2/platform/browser.dart' show bootstrap;
