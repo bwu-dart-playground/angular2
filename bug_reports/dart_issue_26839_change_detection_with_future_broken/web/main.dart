@@ -11,7 +11,7 @@ void main() {
 //  enableProdMode();
   bootstrap(AppElement, [
     ROUTER_PROVIDERS,
-    provide(APP_BASE_HREF, useValue: '/'),
+    // provide(APP_BASE_HREF, useValue: '/'),
 //    provide(LocationStrategy, useClass: HashLocationStrategy)
   ]);
 }

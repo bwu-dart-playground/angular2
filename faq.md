@@ -41,6 +41,7 @@
     - http://stackoverflow.com/questions/36730210/binding-events-when-using-a-ngfortemplate-in-angular-2 (with Plunker) (TemplateViewRef setLocal - is now context)
 
   - Forms
+    - NG_ASYNC_VALIDATORS https://github.com/angular/angular/issues/10009#event-735393828
     - enable new forms (RC.4)
     ```
     import {disableDeprecatedForms, provideForms} from '@angular/forms';
@@ -187,17 +188,28 @@ _ i18n Plural pipe example https://github.com/angular/angular/issues/9793#issuec
 
 - Router
   - RC.3
+    - load config dynamically 
+        - https://github.com/angular/angular/issues/9527#issuecomment-236038503
+        - https://github.com/angular/angular/blob/3784696b9e5bf3709558be0f2766a82af2e032b1/modules/%40angular/router/src/router.ts#L169
+    - animation https://github.com/angular/angular/issues/9845#issuecomment-235799008
+    - navigate away from aux route https://github.com/angular/angular/issues/10071#issuecomment-234648695
+    - is route active https://github.com/angular/angular/issues/9446#issuecomment-234348440
+    - params of parent
+      - https://github.com/angular/angular/issues/10219#issuecomment-234439991
     - initialize using AppModule https://github.com/angular/angular/issues/9604#issuecomment-231439314
     - fragment https://github.com/angular/angular/issues/6595#issuecomment-231548913
+    - lazy loading of components https://github.com/angular/angular/issues/9488#issuecomment-236049046
     - lazy loading modules https://github.com/angular/angular/pull/9849/files
-    - router.routerState has the current set of AcrivatedRoutes in a tree
+    - router.routerState has the current set of ActivatedRoutes in a tree
     - optional router parameters https://github.com/angular/angular/issues/3525
     - data http://stackoverflow.com/questions/36835123/how-do-i-pass-data-in-angular-2-components-while-using-routing
     - resolve http://stackoverflow.com/questions/34289761/angular-2-equivalent-to-router-resolve-data-for-new-router/38138019#38138019
     - default route https://github.com/angular/angular/issues/8579#issuecomment-229227579
     - aux routes http://stackoverflow.com/questions/37962955/angular2-router-in-one-component/37967806#37967806
+      - https://github.com/angular/angular/issues/10351
       - (Router 3 beta2) https://github.com/angular/angular/issues/9957
-    - dynamically load routes `router.resetConfig` https://github.com/angular/angular/blob/3784696b9e5bf3709558be0f2766a82af2e032b1/modules/%40angular/router/src/router.ts#L169
+      - remove aux component https://github.com/angular/angular/issues/5122#issuecomment-236050469
+    
     - Subscribe to `ActivatedRoute` and map to routeState to get Data https://github.com/angular/angular/issues/9662#issuecomment-229034288
     - `<a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Parent</a>` https://github.com/angular/angular/issues/9578
     - remove queryParams https://github.com/angular/angular/issues/9573#issuecomment-228568695
